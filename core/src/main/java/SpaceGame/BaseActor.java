@@ -27,6 +27,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.scenes.scene2d.Group;
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 
@@ -39,6 +40,7 @@ import com.badlogic.gdx.InputMultiplexer;
  * @author Lee Stemkoski
  */
 public class BaseActor extends Group
+
 {
     private Animation<TextureRegion> animation;
     private float elapsedTime;
