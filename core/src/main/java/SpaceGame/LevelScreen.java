@@ -1,10 +1,11 @@
 package SpaceGame;
 
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 
 public class LevelScreen extends BaseScreen
-{
+{   private boolean gameOver;
     private Spaceship spaceship;
     public void initialize()
     {
@@ -21,6 +22,8 @@ public class LevelScreen extends BaseScreen
         new Rock(200,300, mainStage);
         new Rock(200,500, mainStage);
         new Rock(400,500, mainStage);
+        gameOver = false;
+
 
 
     }
@@ -35,6 +38,11 @@ public class LevelScreen extends BaseScreen
                     Explosion boom = new Explosion(0,0, mainStage);
                     boom.centerAtActor(spaceship);
                     spaceship.remove();
+                    BaseActor messageLose = new BaseActor(0,0, uiStage);
+                    messageLose.loadTexture("message-lose.png");
+                    messageLose.centerAtPosition(400,300);
+                    messageLose.setOpacity(0);
+                    messageLose.addAction( Actions.fadeIn(1) );
                     spaceship.setPosition(-1000,-1000);
                 }
                 else
@@ -56,6 +64,18 @@ public class LevelScreen extends BaseScreen
                     rockActor.remove();
                 }
             }
+        }
+
+
+
+        if ( !gameOver && BaseActor.count(mainStage, Rock.class) == 0 )
+        {
+            BaseActor messageWin = new BaseActor(0,0, uiStage);
+            messageWin.loadTexture("message-win.png");
+            messageWin.centerAtPosition(400,300);
+            messageWin.setOpacity(0);
+            messageWin.addAction( Actions.fadeIn(1) );
+            gameOver = true;
         }
     }
 
